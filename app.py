@@ -24,7 +24,7 @@ OWNER_ID = 8835416900
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "سلام! 👋 پیامت رو بفرست تا به صاحب بات برسه.\n\n"
-        "⚠️ اسپم نکن."
+        "⚠️ اسپم  نکن."
     )
 
 
