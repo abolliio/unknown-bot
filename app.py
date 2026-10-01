@@ -23,8 +23,18 @@ OWNER_ID = 8835416900
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "سلام! 👋 پیامت رو بفرست تا به صاحب بات برسه.\n\n"
-        "⚠️ اسپم  نکن."
+        "سلام! 👋 پیامت رو بفرست تا به ابول برسه.\n\n"
+        "⚠️اسپم نکنن."
+    )
+
+
+async def link(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """لینک اختصاصی برای اشتراک‌گذاری (فقط برای صاحب بات)"""
+    url = f"https://t.me/{context.bot.username}?start=msg"
+    await update.message.reply_text(
+        f"🔗 لینک اختصاصی تو:\n{url}\n\n"
+        "این لینک رو تو استوری یا بیو اینستاگرام بذار. "
+        "هرکی روش بزنه مستقیم به بات تلگرام وصل می‌شه."
     )
 
 
@@ -69,6 +79,7 @@ def main():
     app = Application.builder().token(TOKEN).persistence(persistence).build()
 
     owner = filters.User(OWNER_ID)
+    app.add_handler(CommandHandler("link", link, owner))
     app.add_handler(CommandHandler("start", start, filters.ChatType.PRIVATE))
     app.add_handler(MessageHandler(owner & ~filters.COMMAND, from_owner))
     app.add_handler(
